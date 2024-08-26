@@ -90,7 +90,7 @@ public class JDBCExample6 {
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
-			// test
+			
 		}
 	}
 }
