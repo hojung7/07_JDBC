@@ -148,4 +148,5 @@ VALUES(SEQ_USER_NO.NEXTVAL,
 	'user01', 'pass01', '유저일', DEFAULT );
 
 SELECT * FROM TB_USER;
- */
+*/
+ 

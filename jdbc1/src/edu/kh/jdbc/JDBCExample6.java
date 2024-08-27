@@ -23,7 +23,7 @@ public class JDBCExample6 {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			
 			String url = "jdbc:oracle:thin:@localhost:1521:XE";
-			String userName = "KH_BDH";
+			String userName = "KH_JHJ";
 			String password = "KH1234";
 			
 			conn = DriverManager.getConnection(url, userName, password);
@@ -41,6 +41,7 @@ public class JDBCExample6 {
 			System.out.print("비밀번호 입력 : ");
 			String pw = sc.nextLine();
 			
+		
 			System.out.print("수정할 이름 입력 : ");
 			String name = sc.nextLine();
 			
