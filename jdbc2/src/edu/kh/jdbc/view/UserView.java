@@ -6,7 +6,8 @@ import edu.kh.jdbc.dto.User;
 import edu.kh.jdbc.service.UserService;
 
 public class UserView {
-
+	
+	// 필드
 	private UserService service = new UserService();
 	private Scanner sc = new Scanner( System.in);
 	

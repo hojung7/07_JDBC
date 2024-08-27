@@ -65,10 +65,10 @@ public class JDBCExample1 {
 		/* 2-2) DB 연결 정보 작성 */
 		String type = "jdbc:oracle:thin:@"; // 드라이버의 종류
 		
-		String host = "localhost"; // DB 서버 컴퓨터의 IP 또는 도메인 주소
+		String host = "khj-1.xyz"; // DB 서버 컴퓨터의 IP 또는 도메인 주소
 								   // localhost == 현재 컴퓨터
 		
-		String port = ":1521"; // 프로그램 연결을 위한 구분 번호
+		String port = ":10000"; // 프로그램 연결을 위한 구분 번호
 		
 		String dbName = ":XE"; // DBMS 이름(XE == eXpress Edition)
 		

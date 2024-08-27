@@ -1,4 +1,5 @@
-package edu.kh.jdbc.common;
+
+ package edu.kh.jdbc.common;
 
 import java.io.FileInputStream;
 import java.sql.Connection;
@@ -31,7 +32,7 @@ public class JDBCTemplate {
 	private static Connection conn = null;
 	// -> static 메서드에서 사용 가능한 필드는 static 필드만 가능
 	
-	
+
 	// 메서드
 	
 	/**
@@ -75,7 +76,8 @@ public class JDBCTemplate {
 			
 			String filePath = "driver.xml"; 
 			// 프로젝트 폴더 바로 아래 driver.xml 파일
-										
+								
+			// driver.xml 파일의 내용을 prop에 저장하겠다
 			prop.loadFromXML(new FileInputStream(filePath));
 			
 			

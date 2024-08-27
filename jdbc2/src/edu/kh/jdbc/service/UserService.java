@@ -31,12 +31,12 @@ public class UserService {
 		Connection   conn = JDBCTemplate.getConnection();
 		
 		// Dao 메서드 호출 후 결과 반환 받기
-		// (조금 이따 작성)
+	
 		User user = dao.selectId(conn, input);
 		// 다 쓴 커넥션 닫기
 		JDBCTemplate.close(conn);
 		
-		return user; // DB 조회 겨과 반환
+		return user; // DB 조회 결과 반환
 	}
 	
 	
