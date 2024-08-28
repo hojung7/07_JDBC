@@ -8,7 +8,8 @@ public class UserRun {
 		System.out.println(JDBCTemplate.getConnection());
 		
 		UserView view = new UserView();
-		view.test();
-		
+//		view.test();
+	view.mainMenu();
+	
 	}
 }
