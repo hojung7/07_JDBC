@@ -272,11 +272,7 @@ public class UserView {
 			// 입력받은 userId가 중복인지 검사하는
 			// 서비스(SELECT) 호출 후 
 			// 결과(int, 중복 == 1, 아니면 == 0) 반환 받기
-<<<<<<< HEAD
-			int count = service.idcheck(userId);
-=======
 			int count = service.idCheck(userId);
->>>>>>> origin/main
 			
 			if(count == 0) { // 중복이 아닌 경우
 				System.out.println("사용 가능한 아이디 입니다");
@@ -351,11 +347,7 @@ public class UserView {
 				System.out.print((i+1) + "번째 userId : ");
 				userId = sc.nextLine();
 				
-<<<<<<< HEAD
-				int count = service.idcheck(userId);
-=======
 				int count = service.idCheck(userId);
->>>>>>> origin/main
 				
 				if(count == 0) { // 중복이 아닌 경우
 					System.out.println("사용 가능한 아이디 입니다");
@@ -370,12 +362,8 @@ public class UserView {
 			
 			System.out.print((i+1) + "번째 userName : ");
 			String userName = sc.nextLine();
-<<<<<<< HEAD
-			System.out.println("--------------------------------------");
-=======
 			
 			System.out.println("------------------------");
->>>>>>> origin/main
 			
 			User user = new User();
 			user.setUserId(userId);
@@ -407,8 +395,4 @@ public class UserView {
 	
 
 	
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> origin/main

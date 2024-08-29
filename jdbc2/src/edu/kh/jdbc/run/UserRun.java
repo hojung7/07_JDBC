@@ -7,12 +7,10 @@ public class UserRun {
 		
 		UserView view = new UserView();
 //		view.test();
-<<<<<<< HEAD
+
 	view.mainMenu();
 	
-=======
+
 		view.mainMenu();
-		
->>>>>>> origin/main
 	}
 }
