@@ -35,9 +35,49 @@ public interface UserDao {
 	 */
 	User login(Connection conn, String userId, String userPw) throws Exception;
 
-
+ /**
+  * 사용자 목록 조회
+  * @param conn
+  * @return
+  * @throws Exception
+  */
 	List<User> selectAll(Connection conn) throws Exception;
 
+
+	/**
+	 * 검색어가 아이디에 포함된 사용자 조회
+	 * @param conn
+	 * @param searchId
+	 * @return userLiset
+	 * @throws Exception
+	 */
+List<User> search(Connection conn, String searchId) throws Exception;
+
+
+
+
+	User select(Connection conn, int userNo) throws Exception;
+
+
+	
+	/**사용자 삭제
+	 * 
+	 * @param conn
+	 * @param userNo
+	 * @return result
+	 * @throws Exception
+	 */
+	int deletUser(Connection conn, int userNo) throws Exception;
+
+
+	/**
+	 * 사용자 수정
+	 * @param conn
+	 * @return
+	 * @throws Exception
+	 */
+	int updateUser(Connection conn, User user) throws Exception;
+	
 	
 	
 	
