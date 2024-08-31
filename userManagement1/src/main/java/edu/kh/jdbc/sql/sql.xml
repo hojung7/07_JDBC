@@ -36,7 +36,7 @@
 
 	</entry>
 
-	<!-- -->
+	<!--전체조회 -->
 	<entry key="selectAll">
 		SELECT
 		USER_NO,

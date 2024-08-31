@@ -9,7 +9,6 @@ import lombok.ToString;
 // DTO(Data Transfer Object) : 값을 묶어서 전달하는 용도의 객체
 // -> DB에 데이터를 전달하거나, 가져올 때에도 사용
 //  == DB 특정 테이블의 한 행의 데이터를 저장할 수 있는 형태로 class 작성
-
 @Getter 
 @Setter 
 @NoArgsConstructor
