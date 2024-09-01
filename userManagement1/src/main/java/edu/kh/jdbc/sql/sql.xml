@@ -36,11 +36,11 @@
 
 	</entry>
 
-<<<<<<< HEAD
-	<!--전체조회 -->
-=======
+
+
+
 	<!--전체 조회 -->
->>>>>>> origin/main
+
 	<entry key="selectAll">
 		SELECT
 		USER_NO,
@@ -67,7 +67,7 @@
 		ORDER BY USER_NO ASC
 	</entry>
 	
-	<!--  -->
+	<!-- 특정 사용자 조회 -->
 	<entry key="selectUser">
 		SELECT
 			USER_NO,

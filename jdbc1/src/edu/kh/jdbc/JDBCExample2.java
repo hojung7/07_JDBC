@@ -16,6 +16,7 @@ public class JDBCExample2 {
 		/* 1. JDBC 객체 참조용 변수 선언 */
 	
 		
+		
 		Connection conn = null; // DB 연결 정보 저장 객체
 		Statement  stmt = null; // SQL 수행, 결과 반환용 객체
 		ResultSet  rs   = null; // SELECT 수행 결과 저장 객체

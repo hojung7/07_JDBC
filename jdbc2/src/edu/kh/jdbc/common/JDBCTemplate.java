@@ -93,6 +93,7 @@ public class JDBCTemplate {
 			conn = DriverManager.getConnection(url, userName, password);
 			
 			// 만들어진 Connection에 AutoCommit 끄기
+			// AutoCommit을 꺼야 아래 commit을 수행할 수 있음
 			conn.setAutoCommit(false);
 			
 		}catch (Exception e) {
