@@ -8,13 +8,13 @@ public class UserRun {
 		UserView view = new UserView();
 //		view.test();
 
-	view.mainMenu();
-	
 
 		view.mainMenu();
+	
+
 	}
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> origin/main
+
+
+
