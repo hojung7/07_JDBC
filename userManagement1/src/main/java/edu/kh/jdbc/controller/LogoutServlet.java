@@ -13,15 +13,13 @@ public class LogoutServlet extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
 		req.getSession().invalidate(); // 세션 무효화
-												   // == 세션 만료
+									   // == 세션 만료
 		
-		// 메인페이지(/) redirect
+		// 메인페이지(/) 리다이렉트
 		resp.sendRedirect("/");
-		
-		
-		
-		
+	
+	
 	}
 }

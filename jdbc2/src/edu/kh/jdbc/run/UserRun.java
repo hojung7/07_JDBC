@@ -13,4 +13,8 @@ public class UserRun {
 
 		view.mainMenu();
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/main

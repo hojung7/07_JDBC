@@ -15,8 +15,11 @@ public class MainServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
+		// main.jsp에게 보내겠다
 		String path = "/WEB-INF/views/main.jsp";
 		req.getRequestDispatcher(path).forward(req, resp);
 	
 	}
 }
+
+
