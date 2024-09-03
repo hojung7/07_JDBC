@@ -16,7 +16,7 @@
   <h1>Todo List</h1>
 
   <h3>전체 Todo 개수 : ${fn:length(todoList)} / 
-      완료된 Todo 개수 : ${completeCount}</h3>
+      <%-- 완료된 Todo 개수 : ${completeCount}</h3> --%>
 
   <hr>
 
@@ -57,7 +57,7 @@
          인덱스 번째 요소 내용 조회하기
          (쿼리 스트링 이용 : 주소?K=V&K=V&.....)
          -->
-        <a href="/todo/detail?index=${vs.index }">${todo.title}</a>
+        <a href="/todo/detail?index=${vs.index}">${todo.title}</a>
         </td>
 
       <!-- 완료 여부  -->
@@ -66,7 +66,7 @@
         <c:if test="${not todo.complete}" >X</c:if>
         </td>
 
-        <td>${todo.regDate}</td>
+        <%-- <td>${todo.regDate}</td> --%>
         </tr>
     </c:forEach>
  

@@ -11,12 +11,20 @@ import edu.kh.todolist.dto.Todo;
 public interface TodoListDao {
 
 	
-	/**전체조회
-	 * 
+/**
+ * 전체 조회
+ * @param conn
+ * @return
+ * @throws Exception
+ */
+	List<Todo> todoListFullView(Connection conn)throws Exception;
+
+	/**
+	 * 완료된 할 일 개수 조회
 	 * @param conn
 	 * @return
 	 * @throws Exception
 	 */
-	Map<String, Object>  todoListFullview(Connection conn)throws Exception;
+int getCompleteCount(Connection conn) throws Exception;
 	
 }

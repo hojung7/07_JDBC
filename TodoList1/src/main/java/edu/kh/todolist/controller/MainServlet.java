@@ -43,16 +43,14 @@ public class MainServlet extends HttpServlet{
 			
 			// Map에 저장된 값 풀어내기
 			List<Todo> todoList = (List<Todo>)map.get("todoList");
-			int completeCount = (int)map.get("completeCount");
+//			int completeCount = (int)map.get("completeCount");
 			
 			
 			// request scope 객체 값을 추가
 			req.setAttribute("todoList", todoList);
-			req.setAttribute("completeCount", completeCount);
+//			req.setAttribute("completeCount", completeCount);
 			
-			
-			
-		
+
 			// 메인 페이지 응답을 담당하는 jsp에 요청 위임
 			String path = "/WEB-INF/views/main.jsp";
 			req.getRequestDispatcher(path).forward(req, resp);

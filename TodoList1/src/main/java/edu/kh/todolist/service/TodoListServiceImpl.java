@@ -16,30 +16,35 @@ public class TodoListServiceImpl implements TodoListService{
 
 	// 필드
 	private TodoListDao dao = new TodoListDaoImpl();
+
+	//목록 반환 서비스
+	
+	@Override
+	public Map<String, Object> todoListFullView() throws Exception {
+		
+		Connection conn = getConnection();
+		
+		// 할 일 목록 얻어오기
+		List<Todo> todoList = dao.todoListFullView(conn);
+		
+		// 완료된 할 일 개수 카운트
+//		int completeCount = dao.getCompleteCount(conn);
+		
+		// 메서드에서 반환은 하나의 값 또는 객체 밖에 할 수 없기 때문에
+		// Map이라는 컬렉션을 이용해 여러 값을 한 번에 담아서 반환
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("todoList", todoList);
+//		map.put("completeCount", completeCount);
+		
+		
+		return map;
+	}
 	
 	
  
 
- 
- 
-@Override
-public Map<String, Object> todoListFullView() throws Exception {
-	
-	Connection conn = getConnection();
-	
-	List<Todo> todoList = dao.todoListFullview(conn);
-	
-	Map<String, Object> map  = HashMap<String, Object>();
-	
-	map.put("todoList", todoList);
 
-	
-	
-	close(conn);
-
-	return map;
-}
-	
 	
  
 	}

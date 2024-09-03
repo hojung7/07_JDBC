@@ -16,11 +16,11 @@ import lombok.ToString;
 @ToString
 public class Todo  {
 	
-
-	private String todoTitle;
-	private String todoDetail;
-	private Boolean todoComplete;
-	private String todoTimes;
+	private int todoNo;
+	private String title;
+	private String detail;
+	private Boolean complete;
+	private String todoTime;
 
 	} 
 	

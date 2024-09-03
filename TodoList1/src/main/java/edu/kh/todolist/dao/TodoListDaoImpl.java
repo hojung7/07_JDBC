@@ -12,6 +12,7 @@ import java.io.ObjectOutputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,82 +20,102 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import org.apache.catalina.User;
+
 import edu.kh.todolist.common.JDBCTemplate;
 import edu.kh.todolist.dto.Todo;
+import jakarta.websocket.ClientEndpointConfig.Builder;
 
-public class TodoListDaoImpl implements TodoListDao{
+public class TodoListDaoImpl implements TodoListDao {
 
 	private List<Todo> todoList = null;
+	private Statement stmt;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
-	private Properties prop; 
+	private Properties prop;
 
 	// 기본 생성자
 	public TodoListDaoImpl() {
-		
-		// 객체 생성 시 
+
+		// 객체 생성 시
 		// 외부에 존재하는 sql.xml 파일을 읽어와
 		// prop에 저장
-		
+
 		try {
-			String filePath = 
-					JDBCTemplate.class
-					.getResource("/edu/kh/todolist/sql/sql.xml").getPath();
-			
-			
+			String filePath = JDBCTemplate.class.getResource("/edu/kh/todolist/sql/sql.xml").getPath();
+
 			// 지정된 경로의 XML 파일 내용을 읽어와
 			// Properties 객체에 K:V 세팅
 			prop = new Properties();
 			prop.loadFromXML(new FileInputStream(filePath));
-			
-		}catch (Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
-@Override
-public Map<String, Object> todoListFullview(Connection conn) throws Exception {
 
-	List<Todo> todoList = new ArrayList<Todo>();
-	 Map<String, Object> resultMap = new HashMap<>();
-	 
-	
-	try {
-		String sql = prop.getProperty("selectAll");
-		
-		pstmt = conn.prepareStatement(sql);
-	
-		rs = pstmt.executeQuery();
-		
-		while(rs.next()) {
-	
-			String todoTitle = rs.getString("TODO_TITLE");
-			String todoDetail = rs.getString("TODO_DETAIL");
-			boolean todoComplete = rs.getBoolean("TODO_COMPLETE");
-			String todoTime = rs.getString("TODO_TIME");
+	@Override
+	public List<Todo> todoListFullView(Connection conn) throws Exception {
+		List<Todo> todoList = new ArrayList<Todo>();
+
+		try {
+			String sql = prop.getProperty("selectAll");
+
+			pstmt = conn.prepareStatement(sql);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				// Builder 패턴 : 특정 값으로 초기화된 객체를 쉽게 만드는 방법
+				// -> Lombok에서 제공하는 @Builder 어노테이션을 DTO에 작성하면 사용 가능
+
+				int todoNo = rs.getInt("TODO_NO");
+				String todoTitle = rs.getString("TODO_TITLE");
+				String todoDetail = rs.getString("TODO_DETAIL");
+				String todoComplete = rs.getString("TODO_COMPLETE");
+				String todoTime = rs.getString("TODO_TIME");
+
+				Todo todo = new Todo();
+				todo.setTodoNo(todoNo);
+				todo.setTitle(todoTitle);
+				todo.setDetail(todoDetail);
+				todo.setComplete(todoComplete.equals("Y"));
+				todo.setTodoTime(todoTime);
+
+				todoList.add(todo);
+			}
 			
-			Todo todo
-				= new Todo(todoTitle, todoDetail, todoComplete, todoTime);
+			System.out.println(todoList);
 			
-			System.out.println(todo);
 			
-			todoList.add(todo);
+		} finally {
+			close(rs);
+			close(stmt);
 		}
-		resultMap.put("todoList", todoList);
 
-		System.out.println(todoList);
-		
-		
-	} finally {
-		
-		close(rs);
-		close(pstmt);
-		
-	}	
-	return resultMap;
-}
-}
-	
+		return todoList;
+	}
 
+	@Override
+	public int getCompleteCount(Connection conn) throws Exception {
+		int completeCount = 0;
+		
+		try {
+			String sql = prop.getProperty("getCompleteCount");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery(sql);
+			
+			if(rs.next()) {
+					completeCount = rs.getInt(1);
+			}
+		}finally {
+			close(rs);
+			close(stmt);
+		}
+		return completeCount;
+	}
+
+}
