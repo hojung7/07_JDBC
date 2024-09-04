@@ -84,6 +84,14 @@ public class TodoListDaoImpl implements TodoListDao {
 				todo.setTodoTime(todoTime);
 
 				todoList.add(todo);
+				
+				/*
+				 * Todo todo = Todo.builder() .todoNo(rs.getInt("TODO_NO"))
+				 * .title(rs.getString("TODO_TITLE")) .complete(complete)
+				 * .regDate(rs.getString("REG_DATE")) .build();
+				 * 
+				 * todoList.add(todo);
+				 */
 			}
 			
 			System.out.println(todoList);
@@ -116,6 +124,28 @@ public class TodoListDaoImpl implements TodoListDao {
 			close(stmt);
 		}
 		return completeCount;
+	}
+
+	// 할 일 추가
+	@Override
+	public int todoAdd(Connection conn, String title, String detail) throws Exception {
+		int result = 0;
+		
+		try {
+			String sql = prop.getProperty("todoAdd");
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1,  title);
+			pstmt.setString(2, detail);
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+		
+			close(pstmt);
+			
+		}
+		return result;
 	}
 
 }

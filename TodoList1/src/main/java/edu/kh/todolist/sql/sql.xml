@@ -23,6 +23,8 @@
 <!-- 		WHERE  TODO_COMPLETE = 'Y' -->
 <!-- 	</entry> -->
 
+<entry key = "todoAdd">
 
+</entry>
 
 </properties>
