@@ -105,47 +105,47 @@ public class TodoListDaoImpl implements TodoListDao {
 		return todoList;
 	}
 
-	@Override
-	public int getCompleteCount(Connection conn) throws Exception {
-		int completeCount = 0;
-		
-		try {
-			String sql = prop.getProperty("getCompleteCount");
-			
-			pstmt = conn.prepareStatement(sql);
-			
-			rs = pstmt.executeQuery(sql);
-			
-			if(rs.next()) {
-					completeCount = rs.getInt(1);
-			}
-		}finally {
-			close(rs);
-			close(stmt);
-		}
-		return completeCount;
-	}
-
-	// 할 일 추가
-	@Override
-	public int todoAdd(Connection conn, String title, String detail) throws Exception {
-		int result = 0;
-		
-		try {
-			String sql = prop.getProperty("todoAdd");
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setString(1,  title);
-			pstmt.setString(2, detail);
-			
-			result = pstmt.executeUpdate();
-			
-		}finally {
-		
-			close(pstmt);
-			
-		}
-		return result;
-	}
+//	@Override
+//	public int getCompleteCount(Connection conn) throws Exception {
+//		int completeCount = 0;
+//		
+//		try {
+//			String sql = prop.getProperty("getCompleteCount");
+//			
+//			pstmt = conn.prepareStatement(sql);
+//			
+//			rs = pstmt.executeQuery(sql);
+//			
+//			if(rs.next()) {
+//					completeCount = rs.getInt(1);
+//			}
+//		}finally {
+//			close(rs);
+//			close(stmt);
+//		}
+//		return completeCount;
+//	}
+//
+//	// 할 일 추가
+//	@Override
+//	public int todoAdd(Connection conn, String title, String detail) throws Exception {
+//		int result = 0;
+//		
+//		try {
+//			String sql = prop.getProperty("todoAdd");
+//			pstmt = conn.prepareStatement(sql);
+//			
+//			pstmt.setString(1,  title);
+//			pstmt.setString(2, detail);
+//			
+//			result = pstmt.executeUpdate();
+//			
+//		}finally {
+//		
+//			close(pstmt);
+//			
+//		}
+//		return result;
+//	}
 
 }

@@ -19,22 +19,22 @@ public interface TodoListDao {
  */
 	List<Todo> todoListFullView(Connection conn)throws Exception;
 
-	/**
-	 * 완료된 할 일 개수 조회
-	 * @param conn
-	 * @return
-	 * @throws Exception
-	 */
-int getCompleteCount(Connection conn) throws Exception;
-
-	/**
-	 * 할일 추가
-	 * @param conn
-	 * @param title
-	 * @param detail
-	 * @return
-	 * @throws Exception
-	 */
-	int todoAdd(Connection conn, String title, String detail) throws Exception;
+//	/**
+//	 * 완료된 할 일 개수 조회
+//	 * @param conn
+//	 * @return
+//	 * @throws Exception
+//	 */
+//int getCompleteCount(Connection conn) throws Exception;
+//
+//	/**
+//	 * 할일 추가
+//	 * @param conn
+//	 * @param title
+//	 * @param detail
+//	 * @return
+//	 * @throws Exception
+//	 */
+//	int todoAdd(Connection conn, String title, String detail) throws Exception;
 	
 }

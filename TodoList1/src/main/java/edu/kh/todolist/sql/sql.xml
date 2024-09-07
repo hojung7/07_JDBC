@@ -23,7 +23,11 @@
 <!-- 		WHERE  TODO_COMPLETE = 'Y' -->
 <!-- 	</entry> -->
 
+
 <entry key = "todoAdd">
+INSERT INTO TB_TODO
+VALUES(SEQ_TODO_NO.NEXTVAL, 
+				?, ?, TODO_COMPLETE, DEFAULT)
 
 </entry>
 

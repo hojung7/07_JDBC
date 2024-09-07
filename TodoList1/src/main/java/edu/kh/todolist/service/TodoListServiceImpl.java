@@ -42,18 +42,18 @@ public class TodoListServiceImpl implements TodoListService{
 	}
 
 	
-	@Override
-	public int todoAdd(String title, String detail) throws Exception {
-		Connection conn = getConnection();
-		
-		int result = dao.todoAdd(conn, title, detail);
-		
-		if(result > 0) commit(conn);
-		else				rollback(conn);
-		
-		
-		return result;
-	}
+//	@Override
+//	public int todoAdd(String title, String detail) throws Exception {
+//		Connection conn = getConnection();
+//		
+//		int result = dao.todoAdd(conn, title, detail);
+//		
+//		if(result > 0) commit(conn);
+//		else				rollback(conn);
+//		
+//		
+//		return result;
+//	}
 	
 	
  

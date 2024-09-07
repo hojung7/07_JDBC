@@ -17,14 +17,14 @@ public interface TodoListService{
 	 */
 	Map<String, Object> todoListFullView() throws Exception;
 
-	/**
-	 * 할 일 추가
-	 * @param title
-	 * @param detail
-	 * @return
-	 * @throws Exception
-	 */
-	int todoAdd(String title, String detail)throws Exception;
+//	/**
+//	 * 할 일 추가
+//	 * @param title
+//	 * @param detail
+//	 * @return
+//	 * @throws Exception
+//	 */
+//	int todoAdd(String title, String detail)throws Exception;
 	
 
 

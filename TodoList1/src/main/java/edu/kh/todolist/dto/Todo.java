@@ -14,7 +14,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Todo  {
+public class Todo {
 	
 	private int todoNo;
 	private String title;
