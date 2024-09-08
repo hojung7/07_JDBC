@@ -19,6 +19,8 @@ public interface TodoListDao {
  */
 	List<Todo> todoListFullView(Connection conn)throws Exception;
 
+
+
 //	/**
 //	 * 완료된 할 일 개수 조회
 //	 * @param conn
@@ -27,14 +29,28 @@ public interface TodoListDao {
 //	 */
 //int getCompleteCount(Connection conn) throws Exception;
 //
-//	/**
-//	 * 할일 추가
-//	 * @param conn
-//	 * @param title
-//	 * @param detail
-//	 * @return
-//	 * @throws Exception
-//	 */
-//	int todoAdd(Connection conn, String title, String detail) throws Exception;
+	
+/**
+	 * 할일 추가
+	 * @param conn
+	 * @param title
+	 * @param detail
+	 * @return
+	 * @throws Exception
+	 */
+	int todoAdd(Connection conn, String title, String detail) throws Exception;
+
+
+/** 
+ * 할 일 상세 조회
+ * @param conn
+ * @param todoNo
+ * @return
+ * @throws Exception
+ */
+Todo todoDetailView(Connection conn, int todoNo) throws Exception;
+
+
+
 	
 }

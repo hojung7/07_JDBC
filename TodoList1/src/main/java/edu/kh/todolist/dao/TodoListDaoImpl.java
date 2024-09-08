@@ -26,6 +26,7 @@ import edu.kh.todolist.common.JDBCTemplate;
 import edu.kh.todolist.dto.Todo;
 import jakarta.websocket.ClientEndpointConfig.Builder;
 
+
 public class TodoListDaoImpl implements TodoListDao {
 
 	private List<Todo> todoList = null;
@@ -59,7 +60,7 @@ public class TodoListDaoImpl implements TodoListDao {
 		List<Todo> todoList = new ArrayList<Todo>();
 
 		try {
-			String sql = prop.getProperty("selectAll");
+			String sql = prop.getProperty("todoListFullView");
 
 			pstmt = conn.prepareStatement(sql);
 
@@ -70,21 +71,31 @@ public class TodoListDaoImpl implements TodoListDao {
 				// Builder 패턴 : 특정 값으로 초기화된 객체를 쉽게 만드는 방법
 				// -> Lombok에서 제공하는 @Builder 어노테이션을 DTO에 작성하면 사용 가능
 
-				int todoNo = rs.getInt("TODO_NO");
-				String todoTitle = rs.getString("TODO_TITLE");
-				String todoDetail = rs.getString("TODO_DETAIL");
-				String todoComplete = rs.getString("TODO_COMPLETE");
-				String todoTime = rs.getString("TODO_TIME");
-
-				Todo todo = new Todo();
-				todo.setTodoNo(todoNo);
-				todo.setTitle(todoTitle);
-				todo.setDetail(todoDetail);
-				todo.setComplete(todoComplete.equals("Y"));
-				todo.setTodoTime(todoTime);
-
-				todoList.add(todo);
+				/*
+				 * int todoNo = rs.getInt("TODO_NO"); String todoTitle =
+				 * rs.getString("TODO_TITLE"); String todoDetail = rs.getString("TODO_DETAIL");
+				 * String todoComplete = rs.getString("TODO_COMPLETE"); String todoRegdate =
+				 * rs.getString("REG_DATE");
+				 * 
+				 * Todo todo = new Todo(); todo.setTodoNo(todoNo); todo.setTitle(todoTitle);
+				 * todo.setDetail(todoDetail); todo.setComplete(todoComplete.equals("Y"));
+				 * todo.setRegdate(todoRegdate);
+				 * 
+				 * todoList.add(todo);
+				 */
 				
+				// Builder 패턴 : 특정 값으로 초기화된 객체를 쉽게 만드는 방법
+				// -> Lombok에서 제공하는 @Builder 어노테이션을 DTO에 작성하면 사용 가능
+				boolean complete = rs.getInt("TODO_COMPLETE") == 1;
+				
+				Todo todo = Todo.builder()
+							.todoNo(rs.getInt("TODO_NO"))
+							.title(rs.getString("TODO_TITLE"))
+							.complete(complete)
+							.regDate(rs.getString("REG_DATE"))
+							.build();
+				
+				todoList.add(todo);
 				/*
 				 * Todo todo = Todo.builder() .todoNo(rs.getInt("TODO_NO"))
 				 * .title(rs.getString("TODO_TITLE")) .complete(complete)
@@ -94,7 +105,7 @@ public class TodoListDaoImpl implements TodoListDao {
 				 */
 			}
 			
-			System.out.println(todoList);
+
 			
 			
 		} finally {
@@ -125,27 +136,62 @@ public class TodoListDaoImpl implements TodoListDao {
 //		}
 //		return completeCount;
 //	}
-//
-//	// 할 일 추가
-//	@Override
-//	public int todoAdd(Connection conn, String title, String detail) throws Exception {
-//		int result = 0;
-//		
-//		try {
-//			String sql = prop.getProperty("todoAdd");
-//			pstmt = conn.prepareStatement(sql);
-//			
-//			pstmt.setString(1,  title);
-//			pstmt.setString(2, detail);
-//			
-//			result = pstmt.executeUpdate();
-//			
-//		}finally {
-//		
-//			close(pstmt);
-//			
-//		}
-//		return result;
-//	}
+
+	// 할 일 추가
+	@Override
+	public int todoAdd(Connection conn, String title, String detail) throws Exception {
+		int result = 0;
+		
+		try {
+			String sql = prop.getProperty("todoAdd");
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1,  title);
+			pstmt.setString(2, detail);
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+		
+			close(pstmt);
+			
+		}
+		return result;
+	}
+
+	// 할 일 상세조회
+	@Override
+	public Todo todoDetailView(Connection conn, int todoNo) throws Exception {
+		Todo todo = null;
+		
+		try {
+			String sql = prop.getProperty("todoListFullView");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, todoNo);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				
+			boolean complete = rs.getInt("TODO_COMPLETE") == 1;
+			
+			
+			todo = Todo.builder()
+						.todoNo(rs.getInt("TODO_NO"))
+						.title(rs.getString("TODO_TITLE"))
+						.detail(rs.getString("TODO_DETAIL"))
+						.complete(complete)
+						.regDate(rs.getString("REG_DATE"))
+						.build();
+			}
+			
+			
+		}finally {
+			close(rs);
+			close(pstmt);
+			
+		}
+		return todo;
+	}
 
 }

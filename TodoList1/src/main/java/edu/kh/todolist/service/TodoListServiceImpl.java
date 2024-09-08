@@ -41,20 +41,31 @@ public class TodoListServiceImpl implements TodoListService{
 		return map;
 	}
 
-	
-//	@Override
-//	public int todoAdd(String title, String detail) throws Exception {
-//		Connection conn = getConnection();
-//		
-//		int result = dao.todoAdd(conn, title, detail);
-//		
-//		if(result > 0) commit(conn);
-//		else				rollback(conn);
-//		
-//		
-//		return result;
-//	}
-	
+	@Override
+	public int todoAdd(String title, String detail) throws Exception {
+		
+		Connection conn = getConnection();
+		
+		int result = dao.todoAdd(conn, title, detail);
+		
+		if(result >0) commit(conn);
+		else 				rollback(conn);
+		close(conn);
+		return result;
+	}
+
+	@Override
+	public Todo todoDetailView(int todoNo) throws Exception {
+		
+		Connection conn = getConnection();
+		
+	   Todo todo = dao.todoDetailView(conn, todoNo);
+		
+		close(conn);
+		
+		return todo;
+	}
+
 	
  
 
